@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Spec Checker</title>
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h2>Spec Checker</h2>
+      <nav class="tabs">
+        <button data-tab="results" class="active">검사 결과</button>
+        <button data-tab="rules">규칙 편집</button>
+        <button data-tab="input">입력 확인</button>
+        <button data-tab="settings">설정</button>
+      </nav>
+    </header>
+
+    <main>
+      <section id="tab-results" class="tab active">
+        <div class="controls">
+          <button id="rescan">재스캔</button>
+          <button id="autofix">선택적 교정(팝업에서 적용)</button>
+          <button id="export-csv">CSV 내보내기</button>
+        </div>
+        <div id="results-list">로딩 중...</div>
+      </section>
+
+      <section id="tab-rules" class="tab">
+        <h3>단위 규칙 (근거 포함)</h3>
+        <table id="rules-table"><thead><tr><th>단위</th><th>표기</th><th>근거</th><th>액션</th></tr></thead><tbody></tbody></table>
+        <div class="add">
+          <input id="new-unit" placeholder="단위 (예: GB, % , °C)">
+          <select id="new-mode">
+            <option value="space">띄어쓰기 필요</option>
+            <option value="nospace">붙여쓰기 필요</option>
+          </select>
+          <select id="new-reason">
+            <option value="SI">SI 표준 (물리량)</option>
+            <option value="industry">업계 관행</option>
+            <option value="nonmetric">미터법 아님/관행</option>
+            <option value="notquantity">물리량 표기 아님</option>
+            <option value="custom">사용자 정의</option>
+          </select>
+          <button id="add-rule">추가</button>
+        </div>
+      </section>
+
+      <section id="tab-input" class="tab">
+        <h3>입력 확인</h3>
+        <textarea id="input-text" placeholder="여기에 텍스트 붙여넣기 후 자동 검사" rows="6"></textarea>
+        <div id="input-result">아직 입력 없음</div>
+      </section>
+
+      <section id="tab-settings" class="tab">
+        <h3>시각/동작 설정</h3>
+        <label><input type="radio" name="highlight" value="box" checked> 박스 하이라이트</label><br>
+        <label><input type="radio" name="highlight" value="blink"> 텍스트 깜빡임</label><br>
+        <label><input type="checkbox" id="ocr-toggle"> 이미지 OCR 포함 검사 (Tesseract 필요)</label><br>
+        <p class="note">오프라인 OCR을 사용하려면 <code>vendor/tesseract.min.js</code> 파일을 확장 폴더에 넣으세요.</p>
+      </section>
+    </main>
+    <footer><small>버전 3.0 — GitHub용으로 코드 정리됨</small></footer>
+  </div>
+<script src="popup.js"></script>
+</body>
+</html>

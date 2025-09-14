@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "Spec Checker - Number & Unit Spacing (Full UX, OCR, CSV)",
+  "version": "3.0",
+  "description": "숫자와 단위 사이 띄어쓰기 규칙 검사기 — 팝업 내 탭, 규칙 근거, 깜빡임 옵션, OCR(오프라인 준비), CSV 내보내기 포함",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "downloads"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Spec Checker"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}
